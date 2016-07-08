@@ -1,3 +1,11 @@
+$puppet_install = <<SCRIPT
+echo "Installing Repository"
+sudo yum -y install https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+echo "Installing Puppet"
+sudo yum -y install puppet-agent
+SCRIPT
+
+
 Vagrant.configure(2) do |config|
   config.vm.box = "centos/7"
 
@@ -14,6 +22,7 @@ Vagrant.configure(2) do |config|
     puppetnode1.vm.host_name = "puppetnode1.example.com"
     puppetnode1.vm.synced_folder "puppet-modules/", "/srv/puppet_code"
     puppetnode1.vm.network "private_network", ip: "10.0.10.3"
+    puppetnode1.vm.provision "shell", inline: $puppet_install
   end
 
 end
