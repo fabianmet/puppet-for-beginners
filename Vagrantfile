@@ -3,6 +3,8 @@ echo "Installing Repository"
 sudo yum -y install https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
 echo "Installing Puppet"
 sudo yum -y install puppet-agent
+echo "Installing vim"
+sudo yum -y install vim
 SCRIPT
 
 
